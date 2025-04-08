@@ -44,112 +44,246 @@ SET default_tablespace = '';
 SET default_table_access_method = heap;
 
 --
+-- Name: games; Type: TABLE; Schema: public; Owner: freecodecamp
+--
+
+CREATE TABLE public.games (
+    game_id integer NOT NULL,
+    user_id integer,
+    best_guess integer
+);
+
+
+ALTER TABLE public.games OWNER TO freecodecamp;
+
+--
+-- Name: games_game_id_seq; Type: SEQUENCE; Schema: public; Owner: freecodecamp
+--
+
+CREATE SEQUENCE public.games_game_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.games_game_id_seq OWNER TO freecodecamp;
+
+--
+-- Name: games_game_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: freecodecamp
+--
+
+ALTER SEQUENCE public.games_game_id_seq OWNED BY public.games.game_id;
+
+
+--
 -- Name: users; Type: TABLE; Schema: public; Owner: freecodecamp
 --
 
 CREATE TABLE public.users (
+    user_id integer NOT NULL,
     username character varying(22) NOT NULL,
-    games_played integer DEFAULT 0,
-    best_game integer
+    frequent_games integer DEFAULT 0
 );
 
 
 ALTER TABLE public.users OWNER TO freecodecamp;
 
 --
+-- Name: users_user_id_seq; Type: SEQUENCE; Schema: public; Owner: freecodecamp
+--
+
+CREATE SEQUENCE public.users_user_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.users_user_id_seq OWNER TO freecodecamp;
+
+--
+-- Name: users_user_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: freecodecamp
+--
+
+ALTER SEQUENCE public.users_user_id_seq OWNED BY public.users.user_id;
+
+
+--
+-- Name: games game_id; Type: DEFAULT; Schema: public; Owner: freecodecamp
+--
+
+ALTER TABLE ONLY public.games ALTER COLUMN game_id SET DEFAULT nextval('public.games_game_id_seq'::regclass);
+
+
+--
+-- Name: users user_id; Type: DEFAULT; Schema: public; Owner: freecodecamp
+--
+
+ALTER TABLE ONLY public.users ALTER COLUMN user_id SET DEFAULT nextval('public.users_user_id_seq'::regclass);
+
+
+--
+-- Data for Name: games; Type: TABLE DATA; Schema: public; Owner: freecodecamp
+--
+
+INSERT INTO public.games VALUES (1, 1, 233);
+INSERT INTO public.games VALUES (2, 1, 688);
+INSERT INTO public.games VALUES (3, 2, 890);
+INSERT INTO public.games VALUES (4, 2, 609);
+INSERT INTO public.games VALUES (5, 1, 372);
+INSERT INTO public.games VALUES (6, 1, 807);
+INSERT INTO public.games VALUES (7, 1, 180);
+INSERT INTO public.games VALUES (8, 3, 579);
+INSERT INTO public.games VALUES (9, 3, 616);
+INSERT INTO public.games VALUES (10, 4, 173);
+INSERT INTO public.games VALUES (11, 4, 523);
+INSERT INTO public.games VALUES (12, 3, 38);
+INSERT INTO public.games VALUES (13, 3, 343);
+INSERT INTO public.games VALUES (14, 3, 46);
+INSERT INTO public.games VALUES (15, 5, 244);
+INSERT INTO public.games VALUES (16, 5, 483);
+INSERT INTO public.games VALUES (17, 6, 621);
+INSERT INTO public.games VALUES (18, 6, 59);
+INSERT INTO public.games VALUES (19, 5, 302);
+INSERT INTO public.games VALUES (20, 5, 202);
+INSERT INTO public.games VALUES (21, 5, 108);
+INSERT INTO public.games VALUES (22, 7, 676);
+INSERT INTO public.games VALUES (23, 7, 227);
+INSERT INTO public.games VALUES (24, 8, 719);
+INSERT INTO public.games VALUES (25, 8, 591);
+INSERT INTO public.games VALUES (26, 7, 949);
+INSERT INTO public.games VALUES (27, 7, 60);
+INSERT INTO public.games VALUES (28, 7, 536);
+INSERT INTO public.games VALUES (29, 9, 873);
+INSERT INTO public.games VALUES (30, 9, 635);
+INSERT INTO public.games VALUES (31, 10, 19);
+INSERT INTO public.games VALUES (32, 10, 429);
+INSERT INTO public.games VALUES (33, 9, 164);
+INSERT INTO public.games VALUES (34, 9, 702);
+INSERT INTO public.games VALUES (35, 9, 778);
+INSERT INTO public.games VALUES (36, 11, 481);
+INSERT INTO public.games VALUES (37, 11, 566);
+INSERT INTO public.games VALUES (38, 12, 395);
+INSERT INTO public.games VALUES (39, 12, 715);
+INSERT INTO public.games VALUES (40, 11, 211);
+INSERT INTO public.games VALUES (41, 11, 811);
+INSERT INTO public.games VALUES (42, 11, 56);
+INSERT INTO public.games VALUES (43, 13, 543);
+INSERT INTO public.games VALUES (44, 13, 406);
+INSERT INTO public.games VALUES (45, 14, 127);
+INSERT INTO public.games VALUES (46, 14, 764);
+INSERT INTO public.games VALUES (47, 13, 196);
+INSERT INTO public.games VALUES (48, 13, 571);
+INSERT INTO public.games VALUES (49, 13, 332);
+INSERT INTO public.games VALUES (50, 15, 239);
+INSERT INTO public.games VALUES (51, 15, 874);
+INSERT INTO public.games VALUES (52, 16, 933);
+INSERT INTO public.games VALUES (53, 16, 802);
+INSERT INTO public.games VALUES (54, 15, 550);
+INSERT INTO public.games VALUES (55, 15, 836);
+INSERT INTO public.games VALUES (56, 15, 805);
+INSERT INTO public.games VALUES (57, 17, 440);
+INSERT INTO public.games VALUES (58, 17, 770);
+INSERT INTO public.games VALUES (59, 18, 755);
+INSERT INTO public.games VALUES (60, 18, 164);
+INSERT INTO public.games VALUES (61, 17, 25);
+INSERT INTO public.games VALUES (62, 17, 666);
+INSERT INTO public.games VALUES (63, 17, 143);
+INSERT INTO public.games VALUES (64, 19, 622);
+INSERT INTO public.games VALUES (65, 19, 61);
+INSERT INTO public.games VALUES (66, 20, 822);
+INSERT INTO public.games VALUES (67, 20, 370);
+INSERT INTO public.games VALUES (68, 19, 783);
+INSERT INTO public.games VALUES (69, 19, 711);
+INSERT INTO public.games VALUES (70, 19, 512);
+INSERT INTO public.games VALUES (71, 21, 513);
+INSERT INTO public.games VALUES (72, 21, 180);
+INSERT INTO public.games VALUES (73, 22, 169);
+INSERT INTO public.games VALUES (74, 22, 227);
+INSERT INTO public.games VALUES (75, 21, 764);
+INSERT INTO public.games VALUES (76, 21, 255);
+INSERT INTO public.games VALUES (77, 21, 47);
+INSERT INTO public.games VALUES (78, 23, 121);
+INSERT INTO public.games VALUES (79, 23, 587);
+INSERT INTO public.games VALUES (80, 24, 926);
+INSERT INTO public.games VALUES (81, 24, 620);
+INSERT INTO public.games VALUES (82, 23, 875);
+INSERT INTO public.games VALUES (83, 23, 701);
+INSERT INTO public.games VALUES (84, 23, 588);
+INSERT INTO public.games VALUES (85, 25, 956);
+INSERT INTO public.games VALUES (86, 25, 268);
+INSERT INTO public.games VALUES (87, 26, 50);
+INSERT INTO public.games VALUES (88, 26, 325);
+INSERT INTO public.games VALUES (89, 25, 49);
+INSERT INTO public.games VALUES (90, 25, 609);
+INSERT INTO public.games VALUES (91, 25, 778);
+
+
+--
 -- Data for Name: users; Type: TABLE DATA; Schema: public; Owner: freecodecamp
 --
 
-INSERT INTO public.users VALUES ('user_1744115960649', 356, 400);
-INSERT INTO public.users VALUES ('user_1744115960650', 1024, 146);
-INSERT INTO public.users VALUES ('Alex', 0, NULL);
-INSERT INTO public.users VALUES ('user_1744117262715', 608, 528);
-INSERT INTO public.users VALUES ('user_1744116024833', 434, 919);
-INSERT INTO public.users VALUES ('user_1744117262716', 878, 618);
-INSERT INTO public.users VALUES ('user_1744116024834', 994, 694);
-INSERT INTO public.users VALUES ('user_1744118005768', 2, 248);
-INSERT INTO public.users VALUES ('user_1744116345962', 468, 754);
-INSERT INTO public.users VALUES ('user_1744122016601', 5, 92);
-INSERT INTO public.users VALUES ('user_1744117378227', 2, 236);
-INSERT INTO public.users VALUES ('user_1744116345963', 992, 213);
-INSERT INTO public.users VALUES ('user_1744118005769', 5, 20);
-INSERT INTO public.users VALUES ('user_1744117378228', 5, 473);
-INSERT INTO public.users VALUES ('user_1744116466307', 108, 923);
-INSERT INTO public.users VALUES ('user_1744119277108', 2, 226);
-INSERT INTO public.users VALUES ('user_1744116466308', 1024, 514);
-INSERT INTO public.users VALUES ('user_1744116862550', 20, 738);
-INSERT INTO public.users VALUES ('user_1744117583357', 2, 724);
-INSERT INTO public.users VALUES ('user_1744122279198', 2, 93);
-INSERT INTO public.users VALUES ('user_1744116862551', 992, 1000);
-INSERT INTO public.users VALUES ('user_1744118008115', 2, 69);
-INSERT INTO public.users VALUES ('user_1744117583358', 5, 559);
-INSERT INTO public.users VALUES ('user_1744116920523', 610, 50);
-INSERT INTO public.users VALUES ('user_1744119277109', 5, 204);
-INSERT INTO public.users VALUES ('user_1744116920524', 1020, 192);
-INSERT INTO public.users VALUES ('user_1744118008116', 5, 76);
-INSERT INTO public.users VALUES ('user_1744117585724', 2, 140);
-INSERT INTO public.users VALUES ('user_1744117118740', 484, 951);
-INSERT INTO public.users VALUES ('user_1744117118741', 1022, 961);
-INSERT INTO public.users VALUES ('user_1744117585725', 5, 145);
-INSERT INTO public.users VALUES ('user_1744117160753', 184, 506);
-INSERT INTO public.users VALUES ('user_1744117160754', 1868, 769);
-INSERT INTO public.users VALUES ('user_1744117670919', 2, 128);
-INSERT INTO public.users VALUES ('user_1744118240731', 2, 350);
-INSERT INTO public.users VALUES ('user_1744122573375', 1, 97);
-INSERT INTO public.users VALUES ('user_1744117670920', 5, 12);
-INSERT INTO public.users VALUES ('user_1744119736120', 2, 508);
-INSERT INTO public.users VALUES ('user_1744118240732', 5, 566);
-INSERT INTO public.users VALUES ('user_1744117673045', 2, 359);
-INSERT INTO public.users VALUES ('user_1744122126294', 2, 251);
-INSERT INTO public.users VALUES ('user_1744122279199', 5, 194);
-INSERT INTO public.users VALUES ('user_1744117673046', 5, 485);
-INSERT INTO public.users VALUES ('user_1744119736121', 5, 11);
-INSERT INTO public.users VALUES ('user_1744118394468', 2, 797);
-INSERT INTO public.users VALUES ('user_1744117850381', 2, 458);
-INSERT INTO public.users VALUES ('user_1744117850382', 5, 355);
-INSERT INTO public.users VALUES ('user_1744118394469', 5, 292);
-INSERT INTO public.users VALUES ('user_1744122126295', 5, 427);
-INSERT INTO public.users VALUES ('user_1744117852805', 2, 19);
-INSERT INTO public.users VALUES ('user_1744117852806', 5, 330);
-INSERT INTO public.users VALUES ('user_1744118604694', 2, 494);
-INSERT INTO public.users VALUES ('user_1744119738490', 2, 576);
-INSERT INTO public.users VALUES ('user_1744118604695', 5, 25);
-INSERT INTO public.users VALUES ('user_1744119738491', 5, 162);
-INSERT INTO public.users VALUES ('user_1744118951421', 2, 500);
-INSERT INTO public.users VALUES ('user_1744118951422', 5, 146);
-INSERT INTO public.users VALUES ('user_1744122128517', 2, 403);
-INSERT INTO public.users VALUES ('user_1744121061266', 2, 120);
-INSERT INTO public.users VALUES ('user_1744118959441', 2, 592);
-INSERT INTO public.users VALUES ('user_1744122282909', 2, 472);
-INSERT INTO public.users VALUES ('user_1744118959442', 5, 135);
-INSERT INTO public.users VALUES ('user_1744121061267', 5, 189);
-INSERT INTO public.users VALUES ('user_1744122128518', 5, 329);
-INSERT INTO public.users VALUES ('user_1744119022487', 2, 163);
-INSERT INTO public.users VALUES ('user_1744119022488', 5, 273);
-INSERT INTO public.users VALUES ('user_1744122573376', 4, 183);
-INSERT INTO public.users VALUES ('user_1744121072993', 2, 286);
-INSERT INTO public.users VALUES ('user_1744121072994', 5, 349);
-INSERT INTO public.users VALUES ('user_1744122282910', 5, 217);
-INSERT INTO public.users VALUES ('user_1744119260674', 2, 480);
-INSERT INTO public.users VALUES ('user_1744122130701', 2, 575);
-INSERT INTO public.users VALUES ('user_1744121250521', 2, 400);
-INSERT INTO public.users VALUES ('user_1744119260675', 5, 165);
-INSERT INTO public.users VALUES ('user_1744122130702', 5, 118);
-INSERT INTO public.users VALUES ('user_1744121250522', 5, 213);
-INSERT INTO public.users VALUES ('Jorge', 0, NULL);
-INSERT INTO public.users VALUES ('user_1744121345641', 2, 166);
-INSERT INTO public.users VALUES ('user_1744121345642', 5, 200);
-INSERT INTO public.users VALUES ('user', 0, NULL);
-INSERT INTO public.users VALUES ('users', 0, NULL);
-INSERT INTO public.users VALUES ('user_1744122236686', 2, 693);
-INSERT INTO public.users VALUES ('user_1744122290008', 2, 287);
-INSERT INTO public.users VALUES ('user_1744122016600', 2, 268);
-INSERT INTO public.users VALUES ('user_1744122236687', 5, 55);
-INSERT INTO public.users VALUES ('user_1744122290009', 5, 115);
-INSERT INTO public.users VALUES ('user_1744122273359', 2, 196);
-INSERT INTO public.users VALUES ('user_1744122273360', 5, 3);
-INSERT INTO public.users VALUES ('user_1744122509458', 1, 430);
-INSERT INTO public.users VALUES ('user_1744122509459', 4, 374);
+INSERT INTO public.users VALUES (2, 'user_1744139311909', 2);
+INSERT INTO public.users VALUES (1, 'user_1744139311910', 5);
+INSERT INTO public.users VALUES (26, 'user_1744139756513', 2);
+INSERT INTO public.users VALUES (4, 'user_1744139341409', 2);
+INSERT INTO public.users VALUES (3, 'user_1744139341410', 5);
+INSERT INTO public.users VALUES (25, 'user_1744139756514', 5);
+INSERT INTO public.users VALUES (6, 'user_1744139381875', 2);
+INSERT INTO public.users VALUES (5, 'user_1744139381876', 5);
+INSERT INTO public.users VALUES (8, 'user_1744139408983', 2);
+INSERT INTO public.users VALUES (7, 'user_1744139408984', 5);
+INSERT INTO public.users VALUES (10, 'user_1744139559206', 2);
+INSERT INTO public.users VALUES (9, 'user_1744139559207', 5);
+INSERT INTO public.users VALUES (12, 'user_1744139574876', 2);
+INSERT INTO public.users VALUES (11, 'user_1744139574877', 5);
+INSERT INTO public.users VALUES (14, 'user_1744139580335', 2);
+INSERT INTO public.users VALUES (13, 'user_1744139580336', 5);
+INSERT INTO public.users VALUES (16, 'user_1744139592980', 2);
+INSERT INTO public.users VALUES (15, 'user_1744139592981', 5);
+INSERT INTO public.users VALUES (18, 'user_1744139597603', 2);
+INSERT INTO public.users VALUES (17, 'user_1744139597604', 5);
+INSERT INTO public.users VALUES (20, 'user_1744139600902', 2);
+INSERT INTO public.users VALUES (19, 'user_1744139600903', 5);
+INSERT INTO public.users VALUES (22, 'user_1744139607141', 2);
+INSERT INTO public.users VALUES (21, 'user_1744139607142', 5);
+INSERT INTO public.users VALUES (24, 'user_1744139618003', 2);
+INSERT INTO public.users VALUES (23, 'user_1744139618004', 5);
+
+
+--
+-- Name: games_game_id_seq; Type: SEQUENCE SET; Schema: public; Owner: freecodecamp
+--
+
+SELECT pg_catalog.setval('public.games_game_id_seq', 91, true);
+
+
+--
+-- Name: users_user_id_seq; Type: SEQUENCE SET; Schema: public; Owner: freecodecamp
+--
+
+SELECT pg_catalog.setval('public.users_user_id_seq', 26, true);
+
+
+--
+-- Name: games games_pkey; Type: CONSTRAINT; Schema: public; Owner: freecodecamp
+--
+
+ALTER TABLE ONLY public.games
+    ADD CONSTRAINT games_pkey PRIMARY KEY (game_id);
+
+
+--
+-- Name: users users_pkey; Type: CONSTRAINT; Schema: public; Owner: freecodecamp
+--
+
+ALTER TABLE ONLY public.users
+    ADD CONSTRAINT users_pkey PRIMARY KEY (user_id);
 
 
 --
@@ -158,6 +292,14 @@ INSERT INTO public.users VALUES ('user_1744122509459', 4, 374);
 
 ALTER TABLE ONLY public.users
     ADD CONSTRAINT users_username_key UNIQUE (username);
+
+
+--
+-- Name: games games_user_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: freecodecamp
+--
+
+ALTER TABLE ONLY public.games
+    ADD CONSTRAINT games_user_id_fkey FOREIGN KEY (user_id) REFERENCES public.users(user_id);
 
 
 --
